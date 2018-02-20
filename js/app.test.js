@@ -90,3 +90,9 @@ describe("sumYearsDog", () => {
     ])).toEqual(84);
   });
 });
+
+describe("orderListFruits", () => {
+  it("returns order list if passed array with data", () => {
+    expect(orderListFruits(['Banana', 'Orange', 'Apple', 'Kiwi'])).toEqual(['Apple', 'Banana', 'Kiwi', 'Orange']);
+  });
+});
