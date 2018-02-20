@@ -14,8 +14,17 @@ describe("swapCase", () => {
   it("returns HEY gurl, LETS javascript TOGETHER sometime if passed hey gurl, lets javascript together sometime", () => {
     expect(swapCase("hey gurl, lets javascript together sometime")).toEqual('HEY gurl, LETS javascript TOGETHER sometime');
   });
-  it("returns hola gatito if passed hola GATITO", () => {
+  it("returnsHOLA gatito if passed hola gatito", () => {
     expect(swapCase("hola gatito")).toEqual('HOLA gatito');
+  });
+});
+
+describe("shiftLetters", () => {
+  it("returns encoded string if passed a simple string", () => {
+    expect(shiftLetters('hello')).toEqual('ifmmp');
+  });
+  it("returns encoded string if passed a simple string", () => {
+    expect(shiftLetters('abc')).toEqual('bcd');
   });
 });
 
@@ -40,5 +49,44 @@ describe("oddNumbers", () => {
 describe("reducer", () => {
   it("returns the sum of even and odd numbers if passed array with numbers", () => {
     expect(reducer([1,2,3,4,5,6,7,8,9])).toEqual([20, 25]);
+  });
+});
+
+describe("filterData", () => {
+  it("returns filtered array if passed array with numbers", () => {
+    expect(filterData([
+      {id : 1, name : "John", tags : "javascript"},
+      {id : 2, name : "Alice", tags : "javascript"},
+      {id : 3, name : "Roger", tags : "java"},
+      {id : 4, name : "Adam", tags : "javascript"},
+      {id : 5, name : "Alex", tags : "java"}
+    ])).toEqual(['javascript', 'javascript', 'javascript']);
+  });
+});
+
+describe("sumYearsDog", () => {
+  it("returns sum year dog if passed array with data", () => {
+    expect(sumYearsDog([
+      {
+        name: 'Butters',
+        age: 3,
+        type: 'dog'
+      },
+      {
+        name: 'Lizzy',
+        age: 6,
+        type: 'dog'
+      },
+      {
+        name: 'Red',
+        age: 1,
+        type: 'cat'
+      },
+      {
+        name: 'Joey',
+        age: 3,
+        type: 'dog'
+      },
+    ])).toEqual(84);
   });
 });

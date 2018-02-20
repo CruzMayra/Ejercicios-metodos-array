@@ -59,12 +59,16 @@ var swapCase = function(str) {
 //ejem:  shiftLetters('abcxyz') // ---> "bcdyz
 
 var shiftLetters = function(str) {
-
+  return str
+  .split('', str.length)
+  .map(function(index){
+    return index.charCodeAt()
+  })
+  .map(function(charCode){
+    return String.fromCharCode(charCode + 1)
+  })
+  .join('')
 }
-
-var outputShiftLetters = shiftLetters('hello');
-console.log(outputShiftLetters); // ---> 'ifmmp'
-
 
 // 4. Even numbers
 //Manipula el siguiente array y devuelve un nuevo array que contenga solo a los números pares
@@ -133,24 +137,18 @@ function filterData(array){
   return newArray
 }
 
-// var outputFilterData = filterData(persons);
-// console.log(outputFilterData);
-
 // 8. Render in DOM
 /*Usando la data anterior y alguno de los métodos, pinta en el index.html a través del DOM
  cada una de las personas y todas sus propiedades */
 
 var paintPersons = function(array) {
-  array.forEach(function(element){
-    var person = document.createElement('div');
-    (element.id + '. '+ element.name);
-  })
+
 }
 
 var outputPaintPerson = paintPersons(persons);
 
 // 9. Total de edad en 'años perro'
-/*Considera la siguiente variables data. Nosotros tenmos un arreglo de objetos, cada objeto representa
+/*Considera la siguiente variables data. Nosotros tenemos un arreglo de objetos, cada objeto representa
   una mascota. Las mascotas tienen un nombre, una edad y un tipo.
   Instrucciones:
   1. Selecciona solo a los perros.
@@ -182,6 +180,18 @@ var data = [
     type: 'dog'
   },
 ];
+
+function sumYearsDog(array){
+  return array.filter(function(item){
+    return item.type === 'dog'
+  })
+  .map(function(item){
+    return item.age * 7
+  })
+  .reduce(function(a, b){
+    return a + b
+  })
+}
 
 // 10. Render in DOM
 /*Usando la data anterior y alguno de los métodos, pinta en el index.html a través del DOM
