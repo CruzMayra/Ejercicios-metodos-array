@@ -1,3 +1,5 @@
+/* ---------- Se validan resultados utilizando TDD con Jasmine :D ---------- */
+
 //REGLAS:
 //No puedes utilizar "loops" en ninguna de las funciones (for, while, do while)
 //Utiliza los metodos para arreglos .map, .reduce, .filter, .forEach y .sort
@@ -27,8 +29,6 @@ var capitalize = function(str) {
     .join('')
 }
 
-//Se valida resultado utilizando TDD con Jasmine :D
-
 // 2. swapCase
 /*Ahora escribe una función llamada swapCase que tome una oración como string y
   retorne el string alternando una palabra en mayúsculas y otra en minúsculas
@@ -36,14 +36,19 @@ var capitalize = function(str) {
   NOTA: Debes hacer uso de la funcion capitalize();*/
 
 var swapCase = function(str) {
-  // Escribe tu codigo aquí
-
+  return str
+    .split(' ', str.length)
+    .map(function(item, index){
+      if(index % 2 === 0){
+        return capitalize(item)
+      } else {
+        return item
+      }
+    })
+    .join(' ')
 }
 
-var outputSwapCase = swapCase("hey gurl, lets javascript together sometime")
-console.log(outputSwapCase); //---> "HEY gurl, LETS javascript TOGETHER sometime"
-
-
+// console.log(swapCase('hey gurl, lets javascript together sometime'));
 // 3. shiftLetter
 /*Escribe una funcion ShiftLetter() que tome un string y retorne un string
   codificado cambiando cada letra por la siguiente del alfabeto.
@@ -54,7 +59,7 @@ console.log(outputSwapCase); //---> "HEY gurl, LETS javascript TOGETHER sometime
 //ejem:  shiftLetters('abcxyz') // ---> "bcdyz
 
 var shiftLetters = function(str) {
-  //Escribe tu codigo aquí
+
 }
 
 var outputShiftLetters = shiftLetters('hello');
@@ -68,24 +73,21 @@ console.log(outputShiftLetters); // ---> 'ifmmp'
 var numberArray = [1,2,3,4,5,6,7,8,9,10];
 
 var evenNumbers = function(array) {
-  //Escribe tu codigo aquí.
+  var newArray = array.filter(function(item){
+    return item % 2 === 0;
+  })
+  return newArray
 };
-
-var outputEvenNumbers = evenNumbers(numberArray);
-console.log(outputEvenNumbers); // ---> [2, 4, 6, 8, 10]
-
 
 // 5. Odd numbers
 //Ahora  manipulando el mismo array devuelve un nuevo array que contenga solo a los números impares.
 // ejem. oddNumbers([1,2,3,4,5,6,7,8,9,10]) ---> [1, 3, 5, 7, 9]
 
 var oddNumbers = function(array) {
-  //Escribe tu codigo aquí
+  return array.filter(function(item){
+    return item % 2 === 1
+  })
 };
-
-var outputOdd = oddNumbers(numberArray);
-console.log(outputOddNumbers); // ---> [1, 3, 5, 7, 9]
-
 
 // 6. Reducer
 /*Escribe una función reducer() que tome un arreglo de numeros y retorne un
@@ -95,22 +97,23 @@ console.log(outputOddNumbers); // ---> [1, 3, 5, 7, 9]
 
 Nota: Debes de hacer uso de las funciones de evenNumbers() y oddNumbers.*/
 
-var reducer = function() {
-  //Escribe tu codigo aquí
-
+var reducer = function(array) {
+  var arrayOddNumbers = oddNumbers(array)
+  .reduce(function(a,b){
+    return a + b
+  })
+  var arrayEvenNumbers = evenNumbers(array)
+  .reduce(function(a, b){
+    return a + b
+  })
+   return [arrayEvenNumbers, arrayOddNumbers]
 }
-
-var outputReducer = reducer([1,2,3,4,5,6,7,8,9]);
-console.log(outputReducer); // ---> [ 20, 25 ]
-
 
 // 7. arrayt with strings 'javascript'
 /*Manipula el siguiente array y devuelve un nuevo array que contenga los strings 'javascript',
   debes concatenar dos difrentes métodos para arrays.
   Apartir de este ejercicio te toca darle nombre y forma a tus funciones y sus respectivos outputs.
   ejem. output --> ['javascript', 'javascript', 'javascript']*/
-
-
 
 var persons = [
   {id : 1, name : "John", tags : "javascript"},
@@ -120,12 +123,28 @@ var persons = [
   {id : 5, name : "Alex", tags : "java"}
 ];
 
+function filterData(array){
+  var newArray = array.filter(function(item){
+    return item.tags === 'javascript'
+  })
+  .map(function(item){
+    return item.tags
+  })
+  return newArray
+}
+
+// var outputFilterData = filterData(persons);
+// console.log(outputFilterData);
+
 // 8. Render in DOM
 /*Usando la data anterior y alguno de los métodos, pinta en el index.html a través del DOM
  cada una de las personas y todas sus propiedades */
 
-var paintPersons = function() {
-
+var paintPersons = function(array) {
+  array.forEach(function(element){
+    var person = document.createElement('div');
+    (element.id + '. '+ element.name);
+  })
 }
 
 var outputPaintPerson = paintPersons(persons);
