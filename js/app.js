@@ -8,26 +8,21 @@
 /*Escribe una función capitalize que tome una palabra como string y retorne
  *el mismo string con todas sus letras en mayusculas
  * ejem: capitalize("whoop") --->  "WHOOP" */
+   // No puedes utilizar directamente sobre str toUpperCase
 
-var capitalize = function(str) {
-  //Escribe tu codigo aqui
-  // No puedes utilizar directamente sobre str toUpperCase
+const capitalize = (str) => {
   return str
     .split("",str.length)
-    .map(function(index){
-      return index.charCodeAt();
-    })
-    .map(function(charCode){
+    .map(index => index.charCodeAt())
+    .map(charCode => {
       if(charCode >= 97 && charCode <= 122){
         return charCode - 32
       }
       return charCode
     })
-    .map(function(charCode) {
-      return String.fromCharCode(charCode)
-    })
+    .map(charCode => String.fromCharCode(charCode))
     .join('')
-}
+};
 
 // 2. swapCase
 /*Ahora escribe una función llamada swapCase que tome una oración como string y
@@ -35,10 +30,10 @@ var capitalize = function(str) {
   ejem: swapCase('hey gurl, lets javascript together sometime') ---> "HEY gurl, LETS javascript TOGETHER sometime"
   NOTA: Debes hacer uso de la funcion capitalize();*/
 
-var swapCase = function(str) {
+const swapCase = (str) => {
   return str
     .split(' ', str.length)
-    .map(function(item, index){
+    .map((item, index) => {
       if(index % 2 === 0){
         return capitalize(item)
       } else {
@@ -46,7 +41,7 @@ var swapCase = function(str) {
       }
     })
     .join(' ')
-}
+};
 
 // console.log(swapCase('hey gurl, lets javascript together sometime'));
 // 3. shiftLetter
@@ -58,15 +53,11 @@ var swapCase = function(str) {
 //ejem:  shiftLetters('hello') // ---> 'ifmmp'
 //ejem:  shiftLetters('abcxyz') // ---> "bcdyz
 
-var shiftLetters = function(str) {
+const shiftLetters = str => {
   return str
   .split('', str.length)
-  .map(function(index){
-    return index.charCodeAt()
-  })
-  .map(function(charCode){
-    return String.fromCharCode(charCode + 1)
-  })
+  .map(index => index.charCodeAt())
+  .map(charCode => String.fromCharCode(charCode + 1))
   .join('')
 }
 
@@ -74,12 +65,10 @@ var shiftLetters = function(str) {
 //Manipula el siguiente array y devuelve un nuevo array que contenga solo a los números pares
 // ejem. evenNumber([1,2,3,4,5,6,7,8,9,10]) ---> [2, 4, 6, 8, 10]
 
-var numberArray = [1,2,3,4,5,6,7,8,9,10];
+const numberArray = [1,2,3,4,5,6,7,8,9,10];
 
-var evenNumbers = function(array) {
-  var newArray = array.filter(function(item){
-    return item % 2 === 0;
-  })
+const evenNumbers = array => {
+  let newArray = array.filter(item => item % 2 === 0)
   return newArray
 };
 
@@ -87,11 +76,7 @@ var evenNumbers = function(array) {
 //Ahora  manipulando el mismo array devuelve un nuevo array que contenga solo a los números impares.
 // ejem. oddNumbers([1,2,3,4,5,6,7,8,9,10]) ---> [1, 3, 5, 7, 9]
 
-var oddNumbers = function(array) {
-  return array.filter(function(item){
-    return item % 2 === 1
-  })
-};
+const oddNumbers = array => array.filter(item => item % 2 === 1)
 
 // 6. Reducer
 /*Escribe una función reducer() que tome un arreglo de numeros y retorne un
@@ -101,16 +86,12 @@ var oddNumbers = function(array) {
 
 Nota: Debes de hacer uso de las funciones de evenNumbers() y oddNumbers.*/
 
-var reducer = function(array) {
-  var arrayOddNumbers = oddNumbers(array)
-  .reduce(function(a,b){
-    return a + b
-  })
-  var arrayEvenNumbers = evenNumbers(array)
-  .reduce(function(a, b){
-    return a + b
-  })
-   return [arrayEvenNumbers, arrayOddNumbers]
+const reducer = array => {
+  let arrayOddNumbers = oddNumbers(array)
+  .reduce((a,b) => a + b)
+  let arrayEvenNumbers = evenNumbers(array)
+  .reduce((a, b) => a + b)
+  return [arrayEvenNumbers, arrayOddNumbers]
 }
 
 // 7. arrayt with strings 'javascript'
@@ -119,7 +100,7 @@ var reducer = function(array) {
   Apartir de este ejercicio te toca darle nombre y forma a tus funciones y sus respectivos outputs.
   ejem. output --> ['javascript', 'javascript', 'javascript']*/
 
-var persons = [
+const persons = [
   {id : 1, name : "John", tags : "javascript"},
   {id : 2, name : "Alice", tags : "javascript"},
   {id : 3, name : "Roger", tags : "java"},
@@ -127,13 +108,9 @@ var persons = [
   {id : 5, name : "Alex", tags : "java"}
 ];
 
-function filterData(array){
-  var newArray = array.filter(function(item){
-    return item.tags === 'javascript'
-  })
-  .map(function(item){
-    return item.tags
-  })
+const filterData = array => {
+  var newArray = array.filter(item => item.tags === 'javascript')
+  .map(item => item.tags)
   return newArray
 }
 
@@ -158,7 +135,7 @@ var outputPaintPerson = paintPersons(persons);
   ejem. output --> 84
 */
 
-var data = [
+const data = [
   {
     name: 'Butters',
     age: 3,
@@ -181,16 +158,10 @@ var data = [
   },
 ];
 
-function sumYearsDog(array){
-  return array.filter(function(item){
-    return item.type === 'dog'
-  })
-  .map(function(item){
-    return item.age * 7
-  })
-  .reduce(function(a, b){
-    return a + b
-  })
+const sumYearsDog = array => {
+  return array.filter(item => item.type === 'dog')
+  .map(item => item.age * 7)
+  .reduce((a, b) => a + b)
 }
 
 // 10. Render in DOM
@@ -207,8 +178,6 @@ var outputPaintPets = paintPets(data);
 /*Manipula el siguiente array de frutas y ordenalo alfabéticamente
   ejem. output --> ['Apple', 'Banana', 'Kiwi', 'Orange'];*/
 
-var fruits = ['Banana', 'Orange', 'Apple', 'Kiwi'];
+const fruits = ['Banana', 'Orange', 'Apple', 'Kiwi'];
 
-function orderListFruits(array){
-  return array.sort()
-}
+const orderListFruits = array => array.sort()
